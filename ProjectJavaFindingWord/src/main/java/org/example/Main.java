@@ -1,20 +1,25 @@
 package org.example;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        File file = new File("input.txt");
-        BufferedReader br = new BufferedReader(new FileReader(file));
-        String S = br.readLine();
-        String word = br.readLine();
+        File fileInput = new File("input.txt");
+        FileWriter fileOutput = new FileWriter("output.txt");
+        BufferedReader br = new BufferedReader(new FileReader(fileInput));
 
-        System.out.println("The word BALLOON is contained "+Balloon.findingBalloon(S)+"  times in the word "+S);
-        System.out.println("The word "+ word +" is contained "+findingWordByList.findingWord(S,word)+"  times in the word "+S);
-        System.out.println("The word "+ word +" is contained "+findingWordByHashMap.findingWord(S,word)+"  times in the word "+S);
+        String word = br.readLine();
+        String S;
+        while ((S = br.readLine()) != null) {
+
+            System.out.println("The word BALLOON is contained " + Balloon.findingBalloon(S) + "  times in the word " + S);
+            fileOutput.write("The word BALLOON is contained " + Balloon.findingBalloon(S) + "  times in the word " + S+"\n");
+            System.out.println("The word " + word + " is contained " + findingWordByList.findingWord(S, word) + "  times in the word " + S);
+            fileOutput.write("The word " + word + " is contained " + findingWordByList.findingWord(S, word) + "  times in the word " + S+"\n");
+            System.out.println("The word " + word + " is contained " + findingWordByHashMap.findingWord(S, word) + "  times in the word " + S);
+            fileOutput.write("The word " + word + " is contained " + findingWordByHashMap.findingWord(S, word) + "  times in the word " + S+"\n");
+        }
+        fileOutput.close();
     }
 }

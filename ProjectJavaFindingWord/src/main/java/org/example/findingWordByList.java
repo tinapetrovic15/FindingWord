@@ -7,7 +7,7 @@ import java.util.Locale;
 
 public class findingWordByList {
 
-    public static int findingWord(String S, String word){
+    public int findingWord(String S, String word) throws Exception {
         word = word.toUpperCase();
         S = S.toUpperCase();
         int numberOfAppearances = 0;
@@ -18,21 +18,22 @@ public class findingWordByList {
             alphabete.add(0);
             alphabeteWord.add(0);
         }
+        try {
+            alphabete = coutingLetters(word,alphabete);
+            alphabeteWord = coutingLettersInS(S,alphabete,alphabeteWord);
+            alphabeteWord = scalingOfTheNumberOfCharactersByWord(alphabete,alphabeteWord);
 
-        for(int i=0;i<word.length();i++) {
-            int j = word.charAt(i) - 'A';
-            alphabete.set(j,alphabete.get(j)+1);
+            numberOfAppearances = findingMinNumberOfAppearances(alphabeteWord);
+            return numberOfAppearances;
+
         }
-
-        for(int i=0;i<S.length();i++) {
-
-            int j = S.charAt(i) - 'A';
-
-            if (alphabete.get(j) != 0) {
-                alphabeteWord.set(j, alphabeteWord.get(j) + 1);
-            }
+        catch (NoIndexExeption e){
+            e.printStackTrace();
         }
+        throw new Exception();
+    }
 
+    private List<Integer> scalingOfTheNumberOfCharactersByWord(List<Integer> alphabete, List<Integer> alphabeteWord) {
         for(int i=0;i<26;i++)
         {
             int temp = alphabete.get(i);
@@ -43,15 +44,43 @@ public class findingWordByList {
             }
             else alphabeteWord.set(i,-1);
         }
-        Boolean firstIntteration = true;
+        return alphabeteWord;
+    }
+
+    private int findingMinNumberOfAppearances(List<Integer> alphabeteWord) {
+        int numberOfAppearances = 0;
+        Boolean firstIteration = true;
         for(int i=0;i<26;i++)
         {
             if(alphabeteWord.get(i)!=-1){
-                if (firstIntteration)
+                if (firstIteration)
                     numberOfAppearances = alphabeteWord.get(i);
                 else numberOfAppearances = Math.min(numberOfAppearances,alphabeteWord.get(i));
-                }
+            }
         }
         return numberOfAppearances;
+    }
+
+    private List<Integer> coutingLettersInS(String S, List<Integer> alphabete, List<Integer> alphabeteWord){
+        for(int i=0;i<S.length();i++) {
+                int j = S.charAt(i) - 'A';
+                if(j>alphabete.size()-1) throw new NoIndexExeption();
+                if (alphabete.get(j) != 0) {
+                    alphabeteWord.set(j, alphabeteWord.get(j) + 1);
+            }
+        }
+        return alphabeteWord;
+    }
+
+    private List<Integer> coutingLetters(String word, List<Integer> alphabete){
+
+            for(int i=0;i<word.length();i++) {
+
+                    int j = word.charAt(i) - 'A';
+                    if(j>alphabete.size()-1) throw new NoIndexExeption();
+                    alphabete.set(j,alphabete.get(j)+1);
+
+            }
+            return alphabete;
     }
 }

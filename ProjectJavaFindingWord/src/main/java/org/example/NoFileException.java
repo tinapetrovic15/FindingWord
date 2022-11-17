@@ -1,6 +1,5 @@
 package org.example;
 
-import java.io.IOException;
 
 public class NoFileException extends Exception {
 

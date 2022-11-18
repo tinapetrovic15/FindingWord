@@ -23,6 +23,10 @@ class BalloonTest {
     Solution solution = new Solution();
 
     @Test
+    void testFindingBalloon() throws Exception {
+        assertEquals(2,new Balloon().findingBalloon("BAOOLLNNOLOLGBAX"));
+    }
+    @Test
     void findingBalloon() throws IOException, NoFileException {
     lenient().when(balloon.findingBalloon("BAOOLLNNOLOLGBAX")).thenReturn(2);
     lenient().when(balloon.findingBalloon("ONLABLABLOON")).thenReturn(1);

@@ -22,6 +22,10 @@ class FindingWordByListTest {
     Solution solution = new Solution();
 
     @Test
+    void testFindingWordByList() throws Exception {
+        assertEquals(2,new FindingWordByList().findingWord("BAOOLLNNOLOLGBAX","BALLOON"));
+    }
+    @Test
     void findingWord() throws Exception {
 
         lenient().when(findingWordByList.findingWord("BAOOLLNNOLOLGBAX","BALLOON")).thenReturn(2);

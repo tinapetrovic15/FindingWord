@@ -22,7 +22,10 @@ class FindingWordByHashMapTest {
     FindingWordByHashMap findingWordByHashMap;
     @InjectMocks
     Solution solution = new Solution();
-
+    @Test
+    void testFindingWordByHashMap() throws Exception {
+        assertEquals(2,new FindingWordByHashMap().findingWord("BAOOLLNNOLOLGBAX","BALLOON"));
+    }
     @Test
     void findingWord() throws IOException, NoFileException {
 

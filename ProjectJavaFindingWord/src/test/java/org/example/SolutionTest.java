@@ -10,10 +10,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class SolutionTest {
 
     @Test
-    void readingFromFile() {
-
-    }
-    @Test
     void usingexistingFile() {
         File file = new File("input.txt");
         assertTrue(file.exists());

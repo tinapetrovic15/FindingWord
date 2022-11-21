@@ -9,7 +9,7 @@ public class FindingWordByHashMap {
         HashMap<Character, Integer> wordChar = new HashMap<>();
         HashMap<Character, Integer> inputChar = new HashMap<>();
 
-        for(int i=0;i<word.length();i++) {
+        for(int i = 0; i < word.length(); i++) {
             Character j = word.charAt(i);
             if(wordChar.containsKey(j)){
                 wordChar.replace(j,wordChar.get(j)+1);
@@ -19,25 +19,29 @@ public class FindingWordByHashMap {
             }
         }
         for(int i=0;i<input.length();i++){
-            Character j = input.charAt(i);
-            if(wordChar.containsKey(j)) {
+            Character letter = input.charAt(i);
+            if(wordChar.containsKey(letter)) {
 
-                if(inputChar.containsKey(j)){
-                    inputChar.replace(j,inputChar.get(j)+1);
+                if(inputChar.containsKey(letter)){
+                    inputChar.replace(letter,inputChar.get(letter)+1);
                 }
                 else {
-                    inputChar.put(j,1);
+                    inputChar.put(letter,1);
                 }
             }
         }
         Boolean firstIteration = true;
-        for (Character key : inputChar.keySet()) {
+        for (Character key : wordChar.keySet()) {
             if(firstIteration.booleanValue()) {
-                numberOfAppearances = inputChar.get(key) / wordChar.get(key);
+                if(inputChar.containsKey(key))
+                    numberOfAppearances = inputChar.get(key) / wordChar.get(key);
+                else numberOfAppearances = 0;
                 firstIteration = false;
             }
              else {
-                numberOfAppearances = Math.min(numberOfAppearances, inputChar.get(key) / wordChar.get(key));
+                if(inputChar.containsKey(key))
+                        numberOfAppearances = Math.min(numberOfAppearances, inputChar.get(key) / wordChar.get(key));
+                else numberOfAppearances = Math.min(numberOfAppearances, 0);
             }
         }
 

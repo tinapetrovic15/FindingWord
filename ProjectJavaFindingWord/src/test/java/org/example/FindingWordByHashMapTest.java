@@ -1,6 +1,6 @@
 package org.example;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -11,8 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.lenient;
 
 @ExtendWith(MockitoExtension.class)
@@ -41,17 +40,17 @@ class FindingWordByHashMapTest {
             while (scanner.hasNext()) {
                 String text = scanner.nextLine();
                 numOfLine++;
-                if(numOfLine%12==0){
+                if(numOfLine==12){
                         assertEquals("The word BALLOON is contained 1  times in the word ONLABLABLOON",text);
                 }
-                else if(numOfLine%9==0){
+                else if(numOfLine==9){
                     assertEquals("The word BALLOON is contained 0  times in the word QAWABAWONL",text);
                 }
-                else if(numOfLine%6==0) {
+                else if(numOfLine==6) {
                     assertEquals("The word BALLOON is contained 1  times in the word BAONXXOLL",text);
 
                 }
-                else if(numOfLine%3==0){
+                else if(numOfLine==3){
                     assertEquals("The word BALLOON is contained 2  times in the word BAOOLLNNOLOLGBAX",text);
                 }
             }

@@ -31,13 +31,7 @@ public class Server extends HttpServlet {
         System.out.println(input+" "+word);
 
         FindingWordByHashMap findingWordByHashMap = new FindingWordByHashMap();
-        FindingWordByList findingWordByList = new FindingWordByList();
-        int numberOfAppearances = 0;
-        try {
-            numberOfAppearances = findingWordByList.findingWord(input,word);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        int   numberOfAppearances = findingWordByHashMap.findingWord(input,word);
 
         writer.println("<html><head></head><body>" + numberOfAppearances + "</body></html>");
     }
